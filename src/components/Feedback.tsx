@@ -4,6 +4,7 @@ import Star from "./icons/Star.tsx";
 import Modal from "./Modal.tsx";
 import {ChevronDownIcon} from "@heroicons/react/16/solid";
 import Loading from "./Loading";
+import {feedbackUrl} from "./urls.tsx";
 
 function Feedback() {
 
@@ -23,7 +24,7 @@ function Feedback() {
 
         setLoading(true);
         try {
-            const realUrl = url ? url : 'http://localhost:8000/api/feedback';
+            const realUrl = url ? url : feedbackUrl;
             const feedbackData = await getFeedbacks(realUrl);
             setFeedback(feedbackData);
             setError('');
@@ -91,7 +92,7 @@ function Feedback() {
                                                         <select
                                                             id="rating" name="rating" defaultValue="None"
                                                             className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-xs text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-xs/6"
-                                                            onChange={(e) => { fetchFeedbacks(`http://localhost:8000/api/feedback${e.target.value ? '?rating=' + e.target.value : ''}`)}}>
+                                                            onChange={(e) => { fetchFeedbacks(`${feedbackUrl}${e.target.value ? '?rating=' + e.target.value : ''}`)}}>
                                                                 <option value="">None</option>
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>

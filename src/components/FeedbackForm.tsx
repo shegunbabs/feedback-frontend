@@ -4,6 +4,7 @@ import FormError from "./FormError.tsx";
 import Emojis from "./Emojis.tsx";
 import AlertSuccess from "./AlertSuccess.tsx";
 import Loading from "./Loading.tsx";
+import {feedbackUrl} from "./urls.tsx";
 
 function FeedbackForm({close, refreshData}: { close: () => void, refreshData: () => Promise<void> }) {
 
@@ -48,7 +49,7 @@ function FeedbackForm({close, refreshData}: { close: () => void, refreshData: ()
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('http://localhost:8000/api/feedback', {
+            const response = await fetch(feedbackUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
